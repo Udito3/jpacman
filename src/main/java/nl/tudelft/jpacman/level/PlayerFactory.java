@@ -1,5 +1,7 @@
 package nl.tudelft.jpacman.level;
 
+import nl.tudelft.jpacman.level.CollisionStrategy.PlayerCollisionStrategy;
+import nl.tudelft.jpacman.points.PointCalculator;
 import nl.tudelft.jpacman.sprite.PacManSprites;
 
 /**
@@ -29,8 +31,8 @@ public class PlayerFactory {
      *
      * @return A new player.
      */
-    public Player createPacMan() {
-        return new Player(getSprites().getPacmanSprites(), getSprites().getPacManDeathAnimation());
+    public Player createPacMan(PointCalculator pointCalculator) {
+        return new Player(getSprites().getPacmanSprites(), getSprites().getPacManDeathAnimation(), pointCalculator);
     }
 
     /**

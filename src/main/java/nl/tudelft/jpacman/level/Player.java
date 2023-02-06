@@ -1,9 +1,14 @@
 package nl.tudelft.jpacman.level;
 
+import java.net.StandardSocketOptions;
 import java.util.Map;
 
 import nl.tudelft.jpacman.board.Direction;
 import nl.tudelft.jpacman.board.Unit;
+import nl.tudelft.jpacman.level.CollisionStrategy.ICollisionStrategy;
+import nl.tudelft.jpacman.level.CollisionStrategy.PlayerCollisionStrategy;
+import nl.tudelft.jpacman.npc.Ghost;
+import nl.tudelft.jpacman.points.PointCalculator;
 import nl.tudelft.jpacman.sprite.AnimatedSprite;
 import nl.tudelft.jpacman.sprite.Sprite;
 
@@ -13,6 +18,11 @@ import nl.tudelft.jpacman.sprite.Sprite;
  * @author Jeroen Roosen 
  */
 public class Player extends Unit {
+
+    /**
+     * The amount of lives remaining
+     */
+    private int lives = 3;
 
     /**
      * The amount of points accumulated by this player.
@@ -40,6 +50,11 @@ public class Player extends Unit {
     private Unit killer;
 
     /**
+     * Collision strategy
+     */
+    private PlayerCollisionStrategy playerCollisionStrategy;
+
+    /**
      * Creates a new player with a score of 0 points.
      *
      * @param spriteMap
@@ -47,7 +62,8 @@ public class Player extends Unit {
      * @param deathAnimation
      *            The sprite to be shown when this player dies.
      */
-    protected Player(Map<Direction, Sprite> spriteMap, AnimatedSprite deathAnimation) {
+    protected Player(Map<Direction, Sprite> spriteMap, AnimatedSprite deathAnimation, PointCalculator pointCalculator) {
+        this.playerCollisionStrategy = new PlayerCollisionStrategy(pointCalculator, this);
         this.score = 0;
         this.alive = true;
         this.sprites = spriteMap;
@@ -127,5 +143,19 @@ public class Player extends Unit {
      */
     public void addPoints(int points) {
         score += points;
+    }
+
+    public void removeLife(Unit killer) {
+        this.lives--;
+        System.out.println("Lives : " + this.lives);
+        if (lives <= 0) {
+            setAlive(false);
+            setKiller(killer);
+        }
+    }
+
+    @Override
+    public void collide(Unit collidedOn) {
+        playerCollisionStrategy.collide(collidedOn);
     }
 }

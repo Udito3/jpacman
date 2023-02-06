@@ -126,4 +126,8 @@ public abstract class Unit {
 
         return destination;
     }
+
+    public void collide(Unit collidedOn) {
+        // Do nothing
+    }
 }

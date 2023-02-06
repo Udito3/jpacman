@@ -121,7 +121,7 @@ public class Launcher {
      *         and the ghosts from {@link #getGhostFactory()}.
      */
     protected LevelFactory getLevelFactory() {
-        return new LevelFactory(getSpriteStore(), getGhostFactory(), loadPointCalculator());
+        return new LevelFactory(getSpriteStore(), getGhostFactory());
     }
 
     /**

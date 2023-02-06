@@ -1,12 +1,14 @@
 package nl.tudelft.jpacman.npc;
 
 import nl.tudelft.jpacman.board.Direction;
+import nl.tudelft.jpacman.board.Square;
 import nl.tudelft.jpacman.board.Unit;
+import nl.tudelft.jpacman.level.CollisionStrategy.DefaultCollisionStrategy;
+import nl.tudelft.jpacman.level.CollisionStrategy.GhostCollisionStrategy;
+import nl.tudelft.jpacman.level.CollisionStrategy.PlayerCollisionStrategy;
 import nl.tudelft.jpacman.sprite.Sprite;
 
-import java.util.Map;
-import java.util.Optional;
-import java.util.Random;
+import java.util.*;
 
 /**
  * A non-player unit.
@@ -28,6 +30,11 @@ public abstract class Ghost extends Unit {
      * The random variation added to the {@link #moveInterval}.
      */
     private final int intervalVariation;
+
+    /**
+     * Collision strategy
+     */
+    private GhostCollisionStrategy ghostCollisionStrategy;
 
     /**
      * Calculates the next move for this unit and returns the direction to move
@@ -58,6 +65,7 @@ public abstract class Ghost extends Unit {
      * @param intervalVariation The variation of the interval.
      */
     protected Ghost(Map<Direction, Sprite> spriteMap, int moveInterval, int intervalVariation) {
+        this.ghostCollisionStrategy = new GhostCollisionStrategy(this);
         this.sprites = spriteMap;
         this.intervalVariation = intervalVariation;
         this.moveInterval = moveInterval;
@@ -85,15 +93,7 @@ public abstract class Ghost extends Unit {
      * @return A direction in which the ghost can move, or <code>null</code> if
      * the ghost is shut in by inaccessible squares.
      */
-     protected abstract Direction randomMove();
-
-    /**
-     * Determines a possible move in a random direction.
-     *
-     * @return A direction in which the ghost can move, or <code>null</code> if
-     * the ghost is shut in by inaccessible squares.
-     */
-    /*protected Direction randomMove() {
+    protected Direction randomMove() {
         Square square = getSquare();
         List<Direction> directions = new ArrayList<>();
         for (Direction direction : Direction.values()) {
@@ -106,5 +106,10 @@ public abstract class Ghost extends Unit {
         }
         int i = new Random().nextInt(directions.size());
         return directions.get(i);
-    }*/
+    }
+
+    @Override
+    public void collide(Unit collidedOn) {
+        super.collide(collidedOn);
+    }
 }
