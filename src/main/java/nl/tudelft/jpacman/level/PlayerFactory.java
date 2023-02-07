@@ -1,6 +1,5 @@
 package nl.tudelft.jpacman.level;
 
-import nl.tudelft.jpacman.level.CollisionStrategy.PlayerCollisionStrategy;
 import nl.tudelft.jpacman.points.PointCalculator;
 import nl.tudelft.jpacman.sprite.PacManSprites;
 

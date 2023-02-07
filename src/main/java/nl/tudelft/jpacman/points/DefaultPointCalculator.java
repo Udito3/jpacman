@@ -1,9 +1,7 @@
 package nl.tudelft.jpacman.points;
 
-import nl.tudelft.jpacman.board.Direction;
 import nl.tudelft.jpacman.level.Pellet;
 import nl.tudelft.jpacman.level.Player;
-import nl.tudelft.jpacman.npc.Ghost;
 
 /**
  * A simple, minimalistic point calculator just

@@ -3,9 +3,7 @@ package nl.tudelft.jpacman.npc;
 import nl.tudelft.jpacman.board.Direction;
 import nl.tudelft.jpacman.board.Square;
 import nl.tudelft.jpacman.board.Unit;
-import nl.tudelft.jpacman.level.CollisionStrategy.DefaultCollisionStrategy;
 import nl.tudelft.jpacman.level.CollisionStrategy.GhostCollisionStrategy;
-import nl.tudelft.jpacman.level.CollisionStrategy.PlayerCollisionStrategy;
 import nl.tudelft.jpacman.sprite.Sprite;
 
 import java.util.*;
@@ -110,6 +108,6 @@ public abstract class Ghost extends Unit {
 
     @Override
     public void collide(Unit collidedOn) {
-        super.collide(collidedOn);
+        ghostCollisionStrategy.collide(collidedOn);
     }
 }

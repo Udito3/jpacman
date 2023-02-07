@@ -1,16 +1,13 @@
 package nl.tudelft.jpacman.level;
 
-import java.net.StandardSocketOptions;
-import java.util.Map;
-
 import nl.tudelft.jpacman.board.Direction;
 import nl.tudelft.jpacman.board.Unit;
-import nl.tudelft.jpacman.level.CollisionStrategy.ICollisionStrategy;
 import nl.tudelft.jpacman.level.CollisionStrategy.PlayerCollisionStrategy;
-import nl.tudelft.jpacman.npc.Ghost;
 import nl.tudelft.jpacman.points.PointCalculator;
 import nl.tudelft.jpacman.sprite.AnimatedSprite;
 import nl.tudelft.jpacman.sprite.Sprite;
+
+import java.util.Map;
 
 /**
  * A player operated unit in our game.

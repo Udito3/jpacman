@@ -1,7 +1,6 @@
 package nl.tudelft.jpacman.level;
 
 import nl.tudelft.jpacman.board.Unit;
-import nl.tudelft.jpacman.level.CollisionStrategy.DefaultCollisionStrategy;
 import nl.tudelft.jpacman.sprite.Sprite;
 
 /**
