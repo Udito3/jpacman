@@ -90,10 +90,10 @@ public class LauncherSmokeTest {
         // Here we do it just to let the monsters move.
         Thread.sleep(500L);
 
-        // we're close to monsters, this will get us killed.
+        // we're close to monsters, we should lose a life
         move(game, Direction.WEST, 10);
         move(game, Direction.EAST, 10);
-        assertThat(player.isAlive()).isFalse();
+        assertThat(player.getLives() < 3).isTrue();
 
         game.stop();
         assertThat(game.isInProgress()).isFalse();

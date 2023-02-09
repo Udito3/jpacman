@@ -151,6 +151,10 @@ public class Player extends Unit {
         }
     }
 
+    public int getLives() {
+        return lives;
+    }
+
     @Override
     public void collide(Unit collidedOn) {
         playerCollisionStrategy.collide(collidedOn);
